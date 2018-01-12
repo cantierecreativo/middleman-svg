@@ -1,3 +1,4 @@
+require 'middleman-core'
 require 'middleman/svg'
 
-Middleman::Extensions.register(:svg_tag, Middleman::Svg::Extension)
+Middleman::Extensions.register(:inline_svg, Middleman::Svg::Extension)

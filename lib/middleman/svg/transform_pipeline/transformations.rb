@@ -12,14 +12,11 @@ module Middleman::Svg::TransformPipeline::Transformations
       data: { transform: DataAttributes },
       height: { transform: Height },
       nocomment: { transform: NoComment },
+      no_defs: { transform: NoDefs },
       preserve_aspect_ratio: { transform: PreserveAspectRatio },
       size: { transform: Size },
       width: { transform: Width },
     }
-  end
-
-  def self.custom_transformations
-    magnify_priorities(Middleman::Svg.configuration.custom_transformations)
   end
 
   def self.magnify_priorities(transforms)
@@ -36,7 +33,7 @@ module Middleman::Svg::TransformPipeline::Transformations
   end
 
   def self.all_transformations
-    in_priority_order(built_in_transformations.merge(custom_transformations))
+    in_priority_order(built_in_transformations)
   end
 
   def self.lookup(transform_params)
@@ -51,19 +48,11 @@ module Middleman::Svg::TransformPipeline::Transformations
   end
 
   def self.params_with_defaults(params)
-    without_empty_values(all_default_values.merge(params))
+    without_empty_values(params)
   end
 
   def self.without_empty_values(params)
     params.reject {|key, value| value.nil?}
-  end
-
-  def self.all_default_values
-    custom_transformations
-      .values
-      .select {|opt| opt[:default_value] != nil}
-      .map {|opt| [opt[:attribute], opt[:default_value]]}
-      .inject({}) {|options, attrs| options.merge!(attrs[0] => attrs[1])}
   end
 
   def self.no_transform
@@ -72,6 +61,7 @@ module Middleman::Svg::TransformPipeline::Transformations
 end
 
 require 'middleman/svg/transform_pipeline/transformations/transformation'
+require 'middleman/svg/transform_pipeline/transformations/no_defs'
 require 'middleman/svg/transform_pipeline/transformations/no_comment'
 require 'middleman/svg/transform_pipeline/transformations/class_attribute'
 require 'middleman/svg/transform_pipeline/transformations/style_attribute'

@@ -25,7 +25,7 @@ module Middleman
             doc = Nokogiri::XML::Document.parse(
               doc.to_html(encoding: "UTF-8"), nil, "UTF-8"
             )
-            svg = doc.at_css "svg"
+            svg = doc.at_css("svg")
             yield svg if svg && block_given?
             doc
           end
@@ -38,17 +38,5 @@ module Middleman
         end
       end
     end
-  end
-end
-
-module Middleman::Svg
-  class CustomTransformation < Middleman::Svg::TransformPipeline::Transformations::Transformation
-    # Inherit from this class to keep custom transformation class definitions short
-    # E.g.
-    # class MyTransform < Middleman::Svg::CustomTransformation
-    #   def transform(doc)
-    #     # Your code here...
-    #   end
-    # end
   end
 end
