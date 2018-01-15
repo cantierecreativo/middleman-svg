@@ -28,9 +28,6 @@ module Middleman
 
         Middleman::Svg::TransformPipeline.generate_html_from(svg_file, transform_params).html_safe
       end
-      # helpers do
-#
-#       end
 
       def self.read_svg(filename)
         if Middleman::Svg::IOResource === filename
@@ -42,8 +39,12 @@ module Middleman
 
       def self.asset_path(source)
         root = Middleman::Application.root
-        file_path = "#{root}/source/images/#{source}"
-        File.read(file_path) if File.exists?(file_path)
+        source_path = File.join(root, 'source')
+        if File.exists?(File.join(source_path, 'images', source))
+          File.read(File.join(source_path, 'images', source))
+        elsif File.exists?(File.join(source_path, 'fonts/svg', source))
+          File.read(File.join(source_path, 'fonts/svg', source))
+        end
       end
 
       def self.placeholder(filename)

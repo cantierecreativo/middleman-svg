@@ -7,8 +7,8 @@ module Middleman
 
       def self.default_for(object)
         case object
-        when StringIO then ''
-        when IO then 1
+          when StringIO then ''
+          when IO then 1
         end
       end
 
