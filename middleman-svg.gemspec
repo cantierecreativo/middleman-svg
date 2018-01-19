@@ -4,24 +4,16 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'middleman/svg/version'
 
 Gem::Specification.new do |spec|
+  spec.platform      = Gem::Platform::RUBY
   spec.name          = "middleman-svg"
   spec.version       = Middleman::Svg::VERSION
   spec.authors       = ["Damiano Giacomello"]
-  spec.email         = ["d.giacomello@cantierecreativo.net"]
+  spec.email         = ["giacomello.damiano@gmail.com"]
 
   spec.summary       = "A simple helper to generate inline SVG with Middleman"
   spec.description   = "A simple helper to generate inline SVG content with Middleman"
   spec.homepage      = "https://github.com/cantierecreativo/middleman-svg"
   spec.license       = "MIT"
-
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against " \
-      "public gem pushes."
-  end
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})

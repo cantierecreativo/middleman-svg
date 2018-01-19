@@ -10,11 +10,13 @@ gem 'middleman-svg'
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
-Or install it yourself as:
+Add this line to your config.rb:
 
-    $ gem install middleman-svg
+```ruby
+activate :inline_svg
+```
 
 ## Usage
 
@@ -22,7 +24,7 @@ Styling a SVG document with CSS for use on the web is most reliably achieved by 
 This gem adds a Middleman helper method (inline_svg) that reads an SVG document, applies a CSS class attribute to the root of the document and then embeds it into a view.
 
 ```ruby
-svg_tag "file.svg", class: "some-class"
+inline_svg "file.svg", class: "some-class"
 ```
 
 ## Options
@@ -53,6 +55,7 @@ inline_svg(
   title: 'Some Title',
   desc: 'Some description',
   nocomment: true,
+	no_defs: true,
   preserve_aspect_ratio: 'xMaxYMax meet',
   aria: true,
   aria_hidden: true
