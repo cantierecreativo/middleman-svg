@@ -1,4 +1,5 @@
-require "middleman/svg/transform_pipeline"
+require 'spec_helper'
+require "middleman-svg/transform_pipeline"
 
 describe Middleman::Svg::TransformPipeline::Transformations::AriaAttributes do
   it "adds a role attribute to the SVG document" do

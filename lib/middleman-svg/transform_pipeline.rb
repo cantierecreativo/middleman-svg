@@ -8,5 +8,5 @@ module Middleman::Svg::TransformPipeline
 end
 
 require 'nokogiri'
-require 'middleman/svg/id_generator'
-require 'middleman/svg/transform_pipeline/transformations'
+require 'middleman-svg/id_generator'
+require 'middleman-svg/transform_pipeline/transformations'

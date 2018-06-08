@@ -1,4 +1,5 @@
-require 'middleman/svg/transform_pipeline'
+require 'spec_helper'
+require 'middleman-svg/transform_pipeline'
 
 describe Middleman::Svg::TransformPipeline::Transformations::Description do
   it "adds a desc element to the SVG document" do

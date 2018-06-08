@@ -1,11 +1,19 @@
-require 'middleman-core'
+require "middleman-svg/asset_file"
+require "middleman-svg/transform_pipeline"
+require "middleman-svg/io_resource"
+require "middleman-svg/uri_resource"
+require 'middleman-svg/id_generator'
+
+require 'uri'
+require 'open-uri'
+require 'nokogiri'
 
 module Middleman
   module Svg
-    class Extension < ::Middleman::Extension
+    class SvgExtension < Middleman::Extension
       expose_to_template :inline_svg
 
-      def initialize( app, options_hash={}, &block)
+      def initialize(app, options_hash={}, &block)
         super
 
         require 'active_support/core_ext/string'
@@ -13,15 +21,15 @@ module Middleman
 
       def inline_svg(filename, transform_params={})
         begin
-          svg_file = Middleman::Svg::Extension.read_svg(filename)
+          svg_file = Middleman::Svg::SvgExtension.read_svg(filename)
         rescue Middleman::Svg::AssetFile::FileNotFound
-          return Middleman::Svg::Extension.placeholder(filename) unless transform_params[:fallback].present?
+          return Middleman::Svg::SvgExtension.placeholder(filename) unless transform_params[:fallback].present?
 
           if transform_params[:fallback].present?
             begin
-              svg_file = Middleman::Svg::Extension.read_svg(transform_params[:fallback])
+              svg_file = Middleman::Svg::SvgExtension.read_svg(transform_params[:fallback])
             rescue Middleman::Svg::AssetFile::FileNotFound
-              Middleman::Svg::Extension.placeholder(filename)
+              Middleman::Svg::SvgExtension.placeholder(filename)
             end
           end
         end
@@ -32,8 +40,10 @@ module Middleman
       def self.read_svg(filename)
         if Middleman::Svg::IOResource === filename
           Middleman::Svg::IOResource.read filename
+        elsif Middleman::Svg::URIResource === filename
+          Middleman::Svg::URIResource.read filename
         else
-          Middleman::Svg::Extension.asset_path(filename)
+          Middleman::Svg::SvgExtension.asset_path(filename)
         end
       end
 
@@ -49,7 +59,7 @@ module Middleman
 
       def self.placeholder(filename)
         css_class = Middleman::Svg.configuration.svg_not_found_css_class
-        not_found_message = "'#{filename}' #{Middleman::Svg::Extension.extension_hint(filename)}"
+        not_found_message = "'#{filename}' #{Middleman::Svg::SvgExtension.extension_hint(filename)}"
 
         if css_class.nil?
           return "<svg><!-- SVG file not found: #{not_found_message}--></svg>".html_safe

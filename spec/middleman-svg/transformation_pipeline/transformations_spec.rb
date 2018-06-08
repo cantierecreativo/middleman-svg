@@ -1,5 +1,5 @@
-require 'middleman/svg'
-require 'middleman/svg/transform_pipeline'
+require 'spec_helper'
+require 'middleman-svg/transform_pipeline'
 
 describe Middleman::Svg::TransformPipeline::Transformations do
   context "looking up transformations" do

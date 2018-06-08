@@ -1,4 +1,5 @@
-require 'middleman/svg/transform_pipeline'
+require 'spec_helper'
+require 'middleman-svg/transform_pipeline'
 
 describe Middleman::Svg::TransformPipeline::Transformations::Title do
   it "adds a title element as the first element in the SVG document" do

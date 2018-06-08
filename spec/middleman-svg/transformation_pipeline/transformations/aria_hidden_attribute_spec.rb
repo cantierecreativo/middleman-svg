@@ -1,4 +1,5 @@
-require 'middleman/svg/transform_pipeline'
+require 'spec_helper'
+require 'middleman-svg/transform_pipeline'
 
 describe Middleman::Svg::TransformPipeline::Transformations::AriaHiddenAttribute do
   it "adds an aria-hidden='true' attribute to a SVG document" do

@@ -60,18 +60,18 @@ module Middleman::Svg::TransformPipeline::Transformations
   end
 end
 
-require 'middleman/svg/transform_pipeline/transformations/transformation'
-require 'middleman/svg/transform_pipeline/transformations/no_defs'
-require 'middleman/svg/transform_pipeline/transformations/no_comment'
-require 'middleman/svg/transform_pipeline/transformations/class_attribute'
-require 'middleman/svg/transform_pipeline/transformations/style_attribute'
-require 'middleman/svg/transform_pipeline/transformations/title'
-require 'middleman/svg/transform_pipeline/transformations/description'
-require 'middleman/svg/transform_pipeline/transformations/size'
-require 'middleman/svg/transform_pipeline/transformations/height'
-require 'middleman/svg/transform_pipeline/transformations/width'
-require 'middleman/svg/transform_pipeline/transformations/id_attribute'
-require 'middleman/svg/transform_pipeline/transformations/data_attributes'
-require 'middleman/svg/transform_pipeline/transformations/preserve_aspect_ratio'
-require 'middleman/svg/transform_pipeline/transformations/aria_attributes'
-require "middleman/svg/transform_pipeline/transformations/aria_hidden_attribute"
+require 'middleman-svg/transform_pipeline/transformations/transformation'
+require 'middleman-svg/transform_pipeline/transformations/no_defs'
+require 'middleman-svg/transform_pipeline/transformations/no_comment'
+require 'middleman-svg/transform_pipeline/transformations/class_attribute'
+require 'middleman-svg/transform_pipeline/transformations/style_attribute'
+require 'middleman-svg/transform_pipeline/transformations/title'
+require 'middleman-svg/transform_pipeline/transformations/description'
+require 'middleman-svg/transform_pipeline/transformations/size'
+require 'middleman-svg/transform_pipeline/transformations/height'
+require 'middleman-svg/transform_pipeline/transformations/width'
+require 'middleman-svg/transform_pipeline/transformations/id_attribute'
+require 'middleman-svg/transform_pipeline/transformations/data_attributes'
+require 'middleman-svg/transform_pipeline/transformations/preserve_aspect_ratio'
+require 'middleman-svg/transform_pipeline/transformations/aria_attributes'
+require "middleman-svg/transform_pipeline/transformations/aria_hidden_attribute"

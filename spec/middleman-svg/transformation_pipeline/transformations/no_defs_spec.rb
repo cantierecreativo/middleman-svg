@@ -1,4 +1,5 @@
-require 'middleman/svg/transform_pipeline'
+require 'spec_helper'
+require 'middleman-svg/transform_pipeline'
 
 describe Middleman::Svg::TransformPipeline::Transformations::NoDefs do
   it "remove defs node to a SVG document" do
