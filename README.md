@@ -55,7 +55,7 @@ inline_svg(
   title: 'Some Title',
   desc: 'Some description',
   nocomment: true,
-	no_defs: true,
+  no_defs: true,
   preserve_aspect_ratio: 'xMaxYMax meet',
   aria: true,
   aria_hidden: true
