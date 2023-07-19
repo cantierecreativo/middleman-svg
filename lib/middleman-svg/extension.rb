@@ -59,7 +59,7 @@ module Middleman
 
       def self.placeholder(filename)
         css_class = Middleman::Svg.configuration.svg_not_found_css_class
-        not_found_message = "'#{filename}' #{Middleman::Svg::SvgExtension.extension_hint(filename)}"
+        not_found_message = "'#{backwards_compatible_html_escape(filename)}' #{Middleman::Svg::SvgExtension.extension_hint(filename)}"
 
         if css_class.nil?
           return "<svg><!-- SVG file not found: #{not_found_message}--></svg>".html_safe
@@ -70,6 +70,15 @@ module Middleman
 
       def self.extension_hint(filename)
         filename.ends_with?(".svg") ? "" : "(Try adding .svg to your filename) "
+      end
+
+      def backwards_compatible_html_escape(filename)
+        # html_escape_once was introduced in newer versions of Rails.
+        if ERB::Util.respond_to?(:html_escape_once)
+          ERB::Util.html_escape_once(filename)
+        else
+          ERB::Util.html_escape(filename)
+        end
       end
     end
   end
